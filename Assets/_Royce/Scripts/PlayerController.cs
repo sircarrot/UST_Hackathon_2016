@@ -30,6 +30,8 @@ public class PlayerController : MonoBehaviour {
     public float BuffSlowTime;
     //No Shield, Clear, Quake
 
+    private float debufftime;
+    private float bufftime;
 
     //private Rigidbody2D PlayerCharacter;
 
@@ -51,6 +53,9 @@ public class PlayerController : MonoBehaviour {
         BuffInvincibleTime = 0;
         BuffFreezeTime = 0;
         BuffSlowTime = 0;
+
+        debufftime = 5;
+        bufftime = 5;
     //
 }
 
@@ -84,7 +89,7 @@ public class PlayerController : MonoBehaviour {
         if (!tempbool) { speed -= dbspeedval; tempbool = true; }
 
         float diff = Time.time - DebuffSlowTime;
-        if(diff >= 5)
+        if(diff >= debufftime)
         {
             dbspeed = false;
             speed += dbspeedval;
@@ -94,7 +99,7 @@ public class PlayerController : MonoBehaviour {
     {
         if (!tempbool) { size -= dbsizeval; tempbool = true; }
         float diff = Time.time - DebuffSizeTime;
-        if (diff >= 5)
+        if (diff >= debufftime)
         {
             dbsize = false;
             size += dbsizeval;
@@ -105,7 +110,7 @@ public class PlayerController : MonoBehaviour {
         if (!tempbool) { speed = 0; tempbool = true;}        
 
         float diff = Time.time - DebuffFreezeTime;
-        if (diff >= 5)
+        if (diff >= debufftime)
         {
             dbfreeze = false;
             speed += dbfrzval;
@@ -114,7 +119,7 @@ public class PlayerController : MonoBehaviour {
     public void BuffInvincible()
     {
         float diff = Time.time - BuffInvincibleTime;
-        if (diff >= 5)
+        if (diff >= bufftime)
         {
             invincible = false;
         }
