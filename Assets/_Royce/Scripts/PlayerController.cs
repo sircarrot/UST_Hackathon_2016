@@ -170,10 +170,7 @@ public class PlayerController : NetworkBehaviour {
     }
     public void GetHit()
     {
-        if (isLocalPlayer)
-        {
-            if (!invincible) { if (!shield) { CmdCauseGameOver(); } else { shield = false; } }
-        }
+        if (!invincible) { if (!shield) { CmdCauseGameOver(); } else { shield = false; } }
     }
     [Command]
     void CmdCauseGameOver()
