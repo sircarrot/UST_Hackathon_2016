@@ -16,6 +16,9 @@ public class ShipMove : MonoBehaviour {
 		else if(Input.GetKey(KeyCode.RightArrow))
 			transform.Rotate (Vector3.forward * -90 * Time.deltaTime);
 
+		if (Input.GetKey (KeyCode.UpArrow))
+			transform.position += transform.up*Time.deltaTime*4;
+
 
 	}
 }

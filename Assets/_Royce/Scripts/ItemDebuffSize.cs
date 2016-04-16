@@ -20,7 +20,9 @@ public class ItemDebuffSize : MonoBehaviour {
         if (other.gameObject.CompareTag("Player"))
         {
             gameObject.SetActive(false);
-            PlayerControl.size -= 5;
+            //PlayerControl.size -= 5;
+            Time DebuffTime = Time.time;
+            PlayerControl.DebuffSize(DebuffTime);
         }
     }
 }
