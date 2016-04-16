@@ -12,11 +12,13 @@ public class MyNetworkManager : NetworkManager {
 
     [HideInInspector]
     public bool isHost;
+    public bool isMatchStarted = false;
 
     public void StartNewGame()
     {
         GameObject gameManagerObject = Instantiate(gameManagerPrefab);
         GameManager.instance.StartGame();
+        isMatchStarted = true;
     }
 
     public void Awake()
@@ -35,6 +37,10 @@ public class MyNetworkManager : NetworkManager {
     {
         players.Add(player);
         print("player connected");
+        if (!Pass.isMultiplayer)
+        {
+            StartNewGame();
+        }
     }
 
     public void OnPlayerObjectDisconnected(GameObject player)
@@ -62,5 +68,6 @@ public class MyNetworkManager : NetworkManager {
             StopClient();
         isHost = false;
         players = null;
+        isMatchStarted = false;
     }
 }
