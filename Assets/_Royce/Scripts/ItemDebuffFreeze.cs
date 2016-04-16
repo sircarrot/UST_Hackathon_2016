@@ -20,6 +20,8 @@ public class ItemDebuffFreeze : MonoBehaviour {
         if (other.gameObject.CompareTag("Player"))
         {
             gameObject.SetActive(false);
+            PlayerControl.speed = 0;
+            PlayerControl.DebuffFreezeTime = Time.time;
             PlayerControl.dbfreeze = true;
         }
     }

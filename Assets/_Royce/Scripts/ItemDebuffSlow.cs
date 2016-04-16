@@ -20,7 +20,7 @@ public class ItemDebuffSlow : MonoBehaviour {
         if (other.gameObject.CompareTag("Player"))
         {
             gameObject.SetActive(false);
-            //PlayerControl.speed -= 3;
+            PlayerControl.speed -= PlayerControl.dbspeedval;
             float DebuffSlowTime = Time.time;
             PlayerControl.DebuffSlow();
         }
