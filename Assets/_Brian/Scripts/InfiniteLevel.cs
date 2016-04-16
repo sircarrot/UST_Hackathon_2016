@@ -69,10 +69,20 @@ public class InfiniteLevel : GameLevel
 
 
 
-                                                                                                //position
-            GameObject normalRock = (GameObject) Instantiate(ObjectPool.instance.normalRock, new Vector3(x, y, 0), rot);
-            
-            NetworkServer.Spawn(normalRock);
+            int rockspawn = Random.Range(0, 5);
+            GameObject normalRock;
+            switch (rockspawn)
+            {
+                case 0:
+                    normalRock = (GameObject)Instantiate(ObjectPool.instance.bouncingRock, new Vector3(x, y, 0), rot);
+                    NetworkServer.Spawn(normalRock);
+                    break;
+                default:
+                    normalRock = (GameObject)Instantiate(ObjectPool.instance.normalRock, new Vector3(x, y, 0), rot);
+                    NetworkServer.Spawn(normalRock);
+                    break;
+            }
+
             yield return new WaitForSeconds(1f);
         }
     }
