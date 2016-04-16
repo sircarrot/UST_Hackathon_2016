@@ -89,7 +89,7 @@ public class InfiniteLevel : GameLevel
             if (count % 3 == 0)
             {
                 x = Random.Range(-8, 8);
-                y = Random.Range(-5, 5);
+                y = Random.Range(-4, 4);
                 GameObject rnditem;
                 rnditem = (GameObject)Instantiate(ObjectPool.instance.RandomItem, new Vector3(x, y, 0), Quaternion.identity);
                 NetworkServer.Spawn(normalRock);

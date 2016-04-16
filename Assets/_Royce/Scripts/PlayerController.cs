@@ -141,7 +141,7 @@ public class PlayerController : NetworkBehaviour {
     {
         speed = 0;       
         float diff = Time.time - DebuffFreezeTime;
-        if (diff >= debufftime)
+        if (diff >= (debufftime/2))
         {
             dbfreeze = false;
             speed += dbfrzval;
