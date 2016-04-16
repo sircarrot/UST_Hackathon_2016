@@ -7,8 +7,8 @@ public class ItemShield: MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-	
-	}
+        gameObject.GetComponent<Item>().itemName = "Shield";
+    }
 	
 	// Update is called once per frame
 	void Update () {
