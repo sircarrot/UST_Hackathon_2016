@@ -36,10 +36,14 @@ public class PlayerController : NetworkBehaviour {
     private float debufftime;
     private float bufftime;
 
+    private AudioSource audioPlayer;
+    public AudioClip pickupSound;
+
     //private Rigidbody2D PlayerCharacter;
 
     void Start()
     {
+        audioPlayer = GetComponent<AudioSource>();
         //PlayerCharacter = GetComponent<Rigidbody2D>();
         invincible = false;
         inverse = false;
@@ -48,7 +52,7 @@ public class PlayerController : NetworkBehaviour {
         dbsize = false;
         dbspeed = false;
 
-        speed = 5;
+        speed = 10;
         size = 5;
 
         normspeed = 5;
@@ -70,7 +74,14 @@ public class PlayerController : NetworkBehaviour {
         debufftime = 5;
         bufftime = 5;
     //
-}
+    }
+
+    public void ItemPickedUp(Item item)
+    {
+        audioPlayer.clip = pickupSound;
+        audioPlayer.Play();
+        GameManager.instance.DisplayPickupItem(item.itemName);
+    }
 
     void FixedUpdate()
     {
@@ -95,13 +106,15 @@ public class PlayerController : NetworkBehaviour {
         transform.position += movement * Time.deltaTime * speed;
 
         //Up and down no rotation
+        //transform.rotation = Quaternion.Euler(0,0,Mathf.Atan(moveHorizontal/moveVertical));
+
         if (Input.GetKey(KeyCode.LeftArrow))
             transform.Rotate(Vector3.forward * 90 * Time.deltaTime);
         else if (Input.GetKey(KeyCode.RightArrow))
             transform.Rotate(Vector3.forward * -90 * Time.deltaTime);
 
 
-        
+
     }
 
     public void DebuffSlow()

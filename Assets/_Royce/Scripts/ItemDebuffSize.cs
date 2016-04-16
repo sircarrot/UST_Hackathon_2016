@@ -5,8 +5,8 @@ public class ItemDebuffSize : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-	
-	}
+        gameObject.GetComponent<Item>().itemName = "Size Enlarge";
+    }
 	
 	// Update is called once per frame
 	void Update () {

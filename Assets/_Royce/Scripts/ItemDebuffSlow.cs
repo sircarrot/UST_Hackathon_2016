@@ -5,8 +5,8 @@ public class ItemDebuffSlow : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-	
-	}
+        gameObject.GetComponent<Item>().itemName = "Speed Debuff";
+    }
 	
 	// Update is called once per frame
 	void Update () {

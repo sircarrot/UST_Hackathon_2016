@@ -5,8 +5,8 @@ public class ItemDebuffFreeze : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-	
-	}
+        gameObject.GetComponent<Item>().itemName = "Freeze Debuff";
+    }
 	
 	// Update is called once per frame
 	void Update () {

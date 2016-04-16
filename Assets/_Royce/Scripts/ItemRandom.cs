@@ -10,7 +10,7 @@ public class ItemRandom : MonoBehaviour {
         if (luck < 3)
         {
             //Debuff
-            int rng = Random.Range(0, 5);
+            int rng = Random.Range(0, 4);
             switch (rng) {
                 case 0:
                     gameObject.AddComponent<ItemDebuffFreeze>();
@@ -19,14 +19,14 @@ public class ItemRandom : MonoBehaviour {
                     gameObject.AddComponent<ItemDebuffInverse>();
                     break;
                 case 2:
-                    gameObject.AddComponent<ItemDebuffQuake>();
+                    gameObject.AddComponent<ItemDebuffSlow>();
                     break;
                 case 3:
                     gameObject.AddComponent<ItemDebuffSize>();
                     break;
-                case 4:
-                    gameObject.AddComponent<ItemDebuffSlow>();
-                    break;
+                //case 4:
+                //    gameObject.AddComponent<ItemDebuffQuake>();
+                //    break;
             }
         }
         else if (luck < 7)

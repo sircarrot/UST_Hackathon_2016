@@ -5,8 +5,8 @@ public class ItemDebuffQuake : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
-	}
+        gameObject.GetComponent<Item>().itemName = "Quake Debuff";
+    }
 	
 	// Update is called once per frame
 	void Update () {

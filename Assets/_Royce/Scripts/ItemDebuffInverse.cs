@@ -5,8 +5,8 @@ public class ItemDebuffInverse : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-	
-	}
+        gameObject.GetComponent<Item>().itemName = "Inverse Debuff";
+    }
 	
 	// Update is called once per frame
 	void Update () {
