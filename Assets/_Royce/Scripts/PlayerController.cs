@@ -135,7 +135,7 @@ public class PlayerController : MonoBehaviour {
             invincible = false;
         }
     }
-    public void PlayerDeath()
+    public void GetHit()
     {
         //if (!invincible) { GameManager.instance; } 
     }
