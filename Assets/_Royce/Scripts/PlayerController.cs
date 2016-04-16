@@ -52,7 +52,7 @@ public class PlayerController : NetworkBehaviour {
         dbsize = false;
         dbspeed = false;
 
-        speed = 5;
+        speed = 10;
         size = 5;
 
         normspeed = 5;
