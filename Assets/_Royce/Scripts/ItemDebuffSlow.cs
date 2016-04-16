@@ -21,8 +21,8 @@ public class ItemDebuffSlow : MonoBehaviour {
         {
             gameObject.SetActive(false);
             //PlayerControl.speed -= 3;
-            Time DebuffTime = Time.time;
-            PlayerControl.DebuffSpeed(DebuffTime);
+            float DebuffSlowTime = Time.time;
+            PlayerControl.DebuffSlow();
         }
     }
 }

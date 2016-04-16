@@ -6,10 +6,17 @@ public class PlayerController : MonoBehaviour {
 
     public float speed; // Debuff slow, -3
     public float size; // Debuff size, -5
+
     public bool invincible; // Invincible
     public bool inverse; //Debuff Inverse
     public bool dbfreeze; //Debuff Freeze
     public bool shield; // Shield
+
+    public float DebuffSlowTime;
+    public float DebuffSizeTime;
+    public float DebuffInverse;
+    public float DebuffFreezeTime;
+    public float BuffInvincibleTime;
 
     private Rigidbody2D PlayerCharacter;
 
@@ -21,8 +28,6 @@ public class PlayerController : MonoBehaviour {
         dbfreeze = false;
         shield = false;
 
-        speed = 5;
-        size = 10;
         //
     }
 
@@ -39,5 +44,16 @@ public class PlayerController : MonoBehaviour {
         else if (Input.GetKey(KeyCode.RightArrow))
             transform.Rotate(Vector3.forward * -90 * Time.deltaTime);
         
+
+    }
+
+    public void DebuffSlow()
+    {
+        float diff = Time.time - DebuffSlowTime;
+    }
+
+    public void DebuffSize()
+    {
+
     }
 }

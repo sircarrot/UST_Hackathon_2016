@@ -21,8 +21,8 @@ public class ItemDebuffSize : MonoBehaviour {
         {
             gameObject.SetActive(false);
             //PlayerControl.size -= 5;
-            Time DebuffTime = Time.time;
-            PlayerControl.DebuffSize(DebuffTime);
+            float DebuffSizeTime = Time.time;
+            PlayerControl.DebuffSize();
         }
     }
 }
