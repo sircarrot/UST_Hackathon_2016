@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour {
 
     private GameLevel level;
 
+    public float Timer;
+
     public void Freeze(float duration)
     {
         if(freezeTimer < duration)freezeTimer = duration;
@@ -56,9 +58,12 @@ public class GameManager : MonoBehaviour {
     public void StartGame()
     {
         StopGame();
+        ClearScreen();
         level = gameObject.AddComponent<InfiniteLevel>();
         level.holder = this;
         level.StartGameLevel();
+
+        gameOverMenu.SetActive(false);
     }
 
     public void GameOver()
@@ -80,7 +85,6 @@ public class GameManager : MonoBehaviour {
     public void StopGame()
     {
         RemoveLevel();
-        ClearScreen();
     }
 
     void RemoveLevel()

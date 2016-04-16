@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 using System.Collections;
 using UnityEngine.UI;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : NetworkBehaviour {
 
     public float speed; // Debuff slow, -3
     public float size; // Debuff size, -5
@@ -59,8 +60,10 @@ public class PlayerController : MonoBehaviour {
 
     void FixedUpdate()
     {
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");
+        if (!isLocalPlayer)
+            return;
+        float moveHorizontal = Input.GetAxis("Horizontal") + Input.acceleration.x;
+        float moveVertical = Input.GetAxis("Vertical") + Input.acceleration.y;
         Vector3 movement = new Vector3(moveHorizontal, moveVertical, 0);
 
         //Items
@@ -137,7 +140,15 @@ public class PlayerController : MonoBehaviour {
     }
     public void GetHit()
     {
-        //if (!invincible) { GameManager.instance; } 
+        if (isLocalPlayer)
+        {
+            if (!invincible) { CmdCauseGameOver(); }
+        }
+    }
+    [Command]
+    void CmdCauseGameOver()
+    {
+        GameManager.instance.GameOver();
     }
 }
     
