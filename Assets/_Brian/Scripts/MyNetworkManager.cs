@@ -101,4 +101,8 @@ public class MyNetworkManager : NetworkManager {
         base.OnStopClient();
         multiplayerCanvas.SetActive(true);
     }
+    void OnDestroy()
+    {
+        StopMultiplayer();
+    }
 }

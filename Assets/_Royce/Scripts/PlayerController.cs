@@ -39,6 +39,7 @@ public class PlayerController : NetworkBehaviour {
     private AudioSource audioPlayer;
     public AudioClip pickupSound;
 
+    public Sprite localPlayerSprite;
     //private Rigidbody2D PlayerCharacter;
 
     void Start()
@@ -74,6 +75,13 @@ public class PlayerController : NetworkBehaviour {
         debufftime = 5;
         bufftime = 5;
     //
+    }
+
+    public override void OnStartLocalPlayer()
+    {
+        base.OnStartLocalPlayer();
+        SpriteRenderer renderer = GetComponent<SpriteRenderer>();
+        renderer.sprite = localPlayerSprite;
     }
 
     public void ItemPickedUp(Item item)

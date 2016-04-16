@@ -22,6 +22,7 @@ public class ObjectPool : NetworkBehaviour
     public GameObject DebuffSlow;
     public GameObject DebuffQuake;
 
+    public GameObject UFOBoss;
 
     void Start()
     {
@@ -42,6 +43,7 @@ public class ObjectPool : NetworkBehaviour
         ClientScene.RegisterPrefab(DebuffSlow);
         ClientScene.RegisterPrefab(DebuffQuake);
 
+        ClientScene.RegisterPrefab(UFOBoss);
     }
 
     public static ObjectPool instance;

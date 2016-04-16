@@ -86,17 +86,24 @@ public class InfiniteLevel : GameLevel
             }
 
             //RandomItem
-            if (count % 3 == 0)
+            if (count % 4 == 0)
             {
                 x = Random.Range(-8, 8);
                 y = Random.Range(-4, 4);
                 GameObject rnditem;
                 rnditem = (GameObject)Instantiate(ObjectPool.instance.RandomItem, new Vector3(x, y, 0), Quaternion.identity);
-                NetworkServer.Spawn(normalRock);
+                NetworkServer.Spawn(rnditem);
+            }
+
+            //Boss
+            if (count % 20 == 19)
+            {
+                GameObject boss = (GameObject)Instantiate(ObjectPool.instance.UFOBoss, new Vector3(-11, 1, 0), Quaternion.identity);
+                NetworkServer.Spawn(boss);
             }
             count++;
 
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.7f);
         }
     }
 }
