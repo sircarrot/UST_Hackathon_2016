@@ -29,11 +29,11 @@ public class PlayerController : MonoBehaviour {
     //No Shield, Clear, Quake
 
 
-    private Rigidbody2D PlayerCharacter;
+    //private Rigidbody2D PlayerCharacter;
 
     void Start()
     {
-        PlayerCharacter = GetComponent<Rigidbody2D>();
+        //PlayerCharacter = GetComponent<Rigidbody2D>();
         invincible = false;
         inverse = false;
         dbfreeze = false;

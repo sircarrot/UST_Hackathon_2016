@@ -21,6 +21,7 @@ public class ItemDebuffFreeze : MonoBehaviour {
         {
             gameObject.SetActive(false);
             PlayerControl.speed = 0;
+            PlayerControl.DebuffFreezeTime = Time.time;
             PlayerControl.dbfreeze = true;
         }
     }
