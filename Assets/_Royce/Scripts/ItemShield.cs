@@ -19,8 +19,10 @@ public class ItemShield: MonoBehaviour {
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            gameObject.SetActive(false);
+            PlayerController PlayerControl = other.GetComponent<PlayerController>();
             PlayerControl.shield = true;
+            //Shield Function
+            Destroy(gameObject);
         }
     }
 }

@@ -3,8 +3,6 @@ using System.Collections;
 
 public class ItemDebuffInverse : MonoBehaviour {
 
-    public PlayerController PlayerControl;
-
     // Use this for initialization
     void Start () {
 	
@@ -18,8 +16,10 @@ public class ItemDebuffInverse : MonoBehaviour {
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            gameObject.SetActive(false);
+            PlayerController PlayerControl = other.GetComponent<PlayerController>();
+            PlayerControl.DebuffInverseTime = Time.time;
             PlayerControl.inverse = true;
+            Destroy(gameObject);
         }
     }
 }

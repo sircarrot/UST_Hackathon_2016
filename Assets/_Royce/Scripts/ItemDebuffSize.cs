@@ -3,8 +3,6 @@ using System.Collections;
 
 public class ItemDebuffSize : MonoBehaviour {
 
-    public PlayerController PlayerControl;
-
     // Use this for initialization
     void Start () {
 	
@@ -19,10 +17,11 @@ public class ItemDebuffSize : MonoBehaviour {
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            gameObject.SetActive(false);
-            PlayerControl.size -= PlayerControl.dbsizeval;
-            float DebuffSizeTime = Time.time;
+            PlayerController PlayerControl = other.GetComponent<PlayerController>();  
+            PlayerControl.DebuffSizeTime = Time.time;
+            PlayerControl.dbsize = true;
             PlayerControl.DebuffSize();
+            Destroy(gameObject);
         }
     }
 }

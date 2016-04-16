@@ -3,8 +3,6 @@ using System.Collections;
 
 public class ItemDebuffFreeze : MonoBehaviour {
 
-    public PlayerController PlayerControl;
-
     // Use this for initialization
     void Start () {
 	
@@ -19,10 +17,11 @@ public class ItemDebuffFreeze : MonoBehaviour {
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            gameObject.SetActive(false);
-            PlayerControl.speed = 0;
+            PlayerController PlayerControl = other.GetComponent<PlayerController>();
             PlayerControl.DebuffFreezeTime = Time.time;
             PlayerControl.dbfreeze = true;
+            PlayerControl.DebuffFreeze();
+            Destroy(gameObject);
         }
     }
 }

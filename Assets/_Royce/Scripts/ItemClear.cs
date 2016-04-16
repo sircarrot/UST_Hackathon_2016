@@ -17,8 +17,8 @@ public class ItemClear : MonoBehaviour {
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            gameObject.SetActive(false);
             //Clear
+            Destroy(gameObject);
         }
     }
 }

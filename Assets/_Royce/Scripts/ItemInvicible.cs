@@ -3,8 +3,6 @@ using System.Collections;
 
 public class ItemInvicible : MonoBehaviour {
 
-    public PlayerController PlayerControl;
-
     // Use this for initialization
     void Start () {
 	
@@ -19,8 +17,10 @@ public class ItemInvicible : MonoBehaviour {
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            gameObject.SetActive(false);
+            PlayerController PlayerControl = other.GetComponent<PlayerController>();
+            PlayerControl.BuffInvincibleTime = Time.time;
             PlayerControl.invincible = true;
+            Destroy(gameObject);
         }
     }
 }
