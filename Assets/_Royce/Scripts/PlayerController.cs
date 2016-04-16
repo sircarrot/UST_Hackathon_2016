@@ -5,11 +5,15 @@ using UnityEngine.UI;
 
 public class PlayerController : NetworkBehaviour {
 
-    public float speed; // Debuff slow, -3
-    public float size; // Debuff size, -5
+    public float speed; 
+    public float size; 
+
+    public float normspeed; // Normal value
+    public float normsize; // Normal value
 
     public float dbspeedval; //Debuff value
     public float dbsizeval; // Debuff value
+
     public float dbfrzval; // For testing freeze values
 
     public bool invincible; // Invincible
@@ -43,6 +47,16 @@ public class PlayerController : NetworkBehaviour {
         shield = false;
         dbsize = false;
         dbspeed = false;
+
+        speed = 5;
+        size = 5;
+
+        normspeed = 5;
+        normsize = 5;
+
+        dbspeedval = 2;
+        dbsizeval = 3;
+
 
         dbfrzval = speed;
         DebuffSlowTime = 0;
@@ -92,22 +106,22 @@ public class PlayerController : NetworkBehaviour {
 
     public void DebuffSlow()
     {
-        speed -= dbspeedval;
+        speed = dbspeedval;
         float diff = Time.time - DebuffSlowTime;
         if(diff >= debufftime)
         {
             dbspeed = false;
-            speed += dbspeedval;
+            speed = normspeed;
         }
     }
     public void DebuffSize()
     {
-        size -= dbsizeval;
+        size = dbsizeval;
         float diff = Time.time - DebuffSizeTime;
         if (diff >= debufftime)
         {
             dbsize = false;
-            size += dbsizeval;
+            size = normsize;
         }
     }
     public void DebuffFreeze()

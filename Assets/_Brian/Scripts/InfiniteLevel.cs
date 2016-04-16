@@ -16,9 +16,11 @@ public class InfiniteLevel : GameLevel
     {
         while (true)
         {
-            //Quaternion.Euler(0, 0, Random.Range(0f, 360f));
             float x = 0;
             float y = 0;
+            float r1 = 0;
+            float r2 = 0;
+            Quaternion rot = Quaternion.identity;
             int side = Random.Range(0,4);
             //Random for side of screen
             switch (side)
@@ -27,21 +29,40 @@ public class InfiniteLevel : GameLevel
                 case 0:
                     x = -10 + Random.Range(-10,10) / 10;
                     y = Random.Range(-60, 60) / 10;
+
+                    if (y > 0) { r1 = 225f; r2 = 315f - (y/6*45); }
+                    else { r1 = 225f - (y / 6 * 45); r2 = 315f ; }
+
+                    rot = Quaternion.Euler(0, 0, Random.Range(r1, r2));
                     break;
                 //Up
                 case 1:
                     x = Random.Range(-90, 90) / 10;
                     y = 7 + Random.Range(-10, 10) / 10;
-                    break;
+
+                    if (x > 0) { r1 = 135f; r2 = 225f - (x / 9 * 45); }
+                    else { r1 = 135f - (x / 9 * 45); r2 = 225f; }
+
+                    rot = Quaternion.Euler(0, 0, Random.Range(r1, r2)); break;
                 //Right
                 case 2:
                     x = 10 + Random.Range(-10, 10) / 10;
-                    y = Random.Range(-60, 70) / 10;
+                    y = Random.Range(-60, 60) / 10;
+
+                    if (y > 0) { r1 = 45f; r2 = 135f - (y / 6 * 45); }
+                    else { r1 = 45f - (y / 6 * 45); r2 = 135f; }
+
+                    rot = Quaternion.Euler(0, 0, Random.Range(r1, r2));
                     break;
                 //Down
                 case 3:
                     x = Random.Range(-90, 90) / 10;
                     y = -7 + Random.Range(-10, 10) / 10;
+
+                    if (x > 0) { r1 = -45f; r2 = 45f - (x / 9 * 45); }
+                    else { r1 = -45f - (x / 9 * 45); r2 = 45f; }
+
+                    rot = Quaternion.Euler(0, 0, Random.Range(r1, r2));
                     break;
             }
 
@@ -49,7 +70,7 @@ public class InfiniteLevel : GameLevel
 
 
                                                                                                 //position
-            GameObject normalRock = (GameObject) Instantiate(ObjectPool.instance.normalRock, new Vector3(x, y, 0), Quaternion.identity);
+            GameObject normalRock = (GameObject) Instantiate(ObjectPool.instance.normalRock, new Vector3(x, y, 0), rot);
             
             NetworkServer.Spawn(normalRock);
             yield return new WaitForSeconds(1f);
