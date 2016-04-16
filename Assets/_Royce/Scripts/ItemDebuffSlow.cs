@@ -3,8 +3,6 @@ using System.Collections;
 
 public class ItemDebuffSlow : MonoBehaviour {
 
-    public PlayerController PlayerControl;
-
     // Use this for initialization
     void Start () {
 	
@@ -19,10 +17,11 @@ public class ItemDebuffSlow : MonoBehaviour {
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            gameObject.SetActive(false);
-            PlayerControl.speed -= PlayerControl.dbspeedval;
-            float DebuffSlowTime = Time.time;
+            PlayerController PlayerControl = other.GetComponent<PlayerController>();
+            PlayerControl.DebuffSlowTime = Time.time;
+            PlayerControl.dbspeed = true;
             PlayerControl.DebuffSlow();
+            Destroy(gameObject);    
         }
     }
 }

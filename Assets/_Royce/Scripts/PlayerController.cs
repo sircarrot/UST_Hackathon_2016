@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour {
     public bool dbspeed; // Debuff Slow
     public bool dbsize; // Debuff Size
 
+    public bool tempbool; // Checks for first instances of debuffs
+
     // Buff/Debuff Times
     public float DebuffSlowTime;
     public float DebuffSizeTime;
@@ -67,22 +69,20 @@ public class PlayerController : MonoBehaviour {
 
         //Items
         //Debuffs
-        if (!invincible)
-        {
-            if (dbspeed) DebuffSlow();
-            if (dbsize) DebuffSize();
-            if (dbfreeze) DebuffFreeze();
-        }
-
+        if (dbspeed) DebuffSlow();
+        if (dbsize) DebuffSize();
+        if (dbfreeze) DebuffFreeze();
+        
         //Buffs
-        else BuffInvincible();
-        //if (invincible) BuffInvincible();
+        if (invincible) BuffInvincible();
 
         
     }
 
     public void DebuffSlow()
     {
+        if (!tempbool) { speed -= dbspeedval; tempbool = true; }
+
         float diff = Time.time - DebuffSlowTime;
         if(diff >= 5)
         {
@@ -92,6 +92,7 @@ public class PlayerController : MonoBehaviour {
     }
     public void DebuffSize()
     {
+        if (!tempbool) { size -= dbsizeval; tempbool = true; }
         float diff = Time.time - DebuffSizeTime;
         if (diff >= 5)
         {
@@ -101,6 +102,8 @@ public class PlayerController : MonoBehaviour {
     }
     public void DebuffFreeze()
     {
+        if (!tempbool) { speed = 0; tempbool = true;}        
+
         float diff = Time.time - DebuffFreezeTime;
         if (diff >= 5)
         {
