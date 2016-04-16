@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Collections;
 
-public class GameManager : MonoBehaviour {
+public class GameManager : NetworkBehaviour {
 
     public static GameManager instance;
     public static float enemySpeedScale = 1f;

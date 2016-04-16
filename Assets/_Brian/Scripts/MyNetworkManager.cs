@@ -8,6 +8,7 @@ public class MyNetworkManager : NetworkManager {
     
     public GameObject multiplayerCanvas;
     public GameObject startGameCanvas;
+    public GameObject gamePlane;
 
     bool isMultiplayer;
     public bool debugForMultiplayer;
@@ -75,6 +76,7 @@ public class MyNetworkManager : NetworkManager {
         StartHost();
         players = new List<GameObject>();
         multiplayerCanvas.SetActive(false);
+        gamePlane.SetActive(true);
     }
 
     public void JoinGame()

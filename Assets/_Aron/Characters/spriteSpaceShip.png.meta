@@ -1,9 +1,15 @@
 fileFormatVersion: 2
 guid: 871387013338042bda6e7bc75dfaf426
-timeCreated: 1460830077
+timeCreated: 1460831046
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: spriteSpaceShip_0
+    21300002: spriteSpaceShip_1
+    21300004: spriteSpaceShip_2
+    21300006: spriteSpaceShip_3
+    21300008: spriteSpaceShip_4
+    21300010: spriteSpaceShip_5
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -30,7 +36,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     filterMode: -1
-    aniso: -1
+    aniso: 16
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
@@ -38,7 +44,7 @@ TextureImporter:
   rGBM: 0
   compressionQuality: 50
   allowsAlphaSplitting: 0
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -49,7 +55,130 @@ TextureImporter:
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: spriteSpaceShip_0
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 213
+        width: 169
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -37.5, y: 56}
+        - {x: -84.5, y: 33}
+        - {x: -84.5, y: -48}
+        - {x: -45.5, y: -56}
+        - {x: 39.5, y: -56}
+        - {x: 84.5, y: -39}
+        - {x: 84.5, y: 19}
+        - {x: 44.5, y: 56}
+    - name: spriteSpaceShip_1
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 214
+        width: 169
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 15.5, y: 56}
+        - {x: -27.5, y: 56}
+        - {x: -84.5, y: 20}
+        - {x: -84.5, y: -50}
+        - {x: -83.5, y: -56}
+        - {x: 84.5, y: -56}
+        - {x: 84.5, y: 19}
+        - {x: 29.5, y: 53}
+    - name: spriteSpaceShip_2
+      rect:
+        serializedVersion: 2
+        x: 366
+        y: 212
+        width: 169
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 22.5, y: 56.5}
+        - {x: -26.5, y: 56.5}
+        - {x: -37.5, y: 54.5}
+        - {x: -84.5, y: 18.5}
+        - {x: -84.5, y: -32.5}
+        - {x: -83.5, y: -37.5}
+        - {x: -62.5, y: -54.5}
+        - {x: -41.5, y: -56.5}
+        - {x: 55.5, y: -56.5}
+        - {x: 84.5, y: -45.5}
+        - {x: 84.5, y: 16.5}
+        - {x: 81.5, y: 29.5}
+    - name: spriteSpaceShip_3
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 34
+        width: 169
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -44.5, y: 56}
+        - {x: -79.5, y: 35}
+        - {x: -84.5, y: 22}
+        - {x: -84.5, y: -40}
+        - {x: -73.5, y: -56}
+        - {x: 37.5, y: -56}
+        - {x: 84.5, y: -42}
+        - {x: 84.5, y: 36}
+        - {x: 24.5, y: 56}
+    - name: spriteSpaceShip_4
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 34
+        width: 169
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -39.5, y: 56}
+        - {x: -84.5, y: 40}
+        - {x: -84.5, y: -52}
+        - {x: -55.5, y: -56}
+        - {x: 55.5, y: -56}
+        - {x: 84.5, y: -38}
+        - {x: 84.5, y: 16}
+        - {x: 46.5, y: 56}
+    - name: spriteSpaceShip_5
+      rect:
+        serializedVersion: 2
+        x: 367
+        y: 32
+        width: 169
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 22.5, y: 56.5}
+        - {x: -26.5, y: 56.5}
+        - {x: -37.5, y: 54.5}
+        - {x: -84.5, y: 18.5}
+        - {x: -84.5, y: -32.5}
+        - {x: -83.5, y: -37.5}
+        - {x: -62.5, y: -54.5}
+        - {x: -41.5, y: -56.5}
+        - {x: 55.5, y: -56.5}
+        - {x: 84.5, y: -45.5}
+        - {x: 84.5, y: 16.5}
+        - {x: 81.5, y: 29.5}
     outline: []
   spritePackingTag: 
   userData: 
