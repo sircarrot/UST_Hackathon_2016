@@ -3,8 +3,10 @@ using System.Collections;
 
 public class ItemDebuffInverse : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
+    public PlayerController PlayerControl;
+
+    // Use this for initialization
+    void Start () {
 	
 	}
 	
@@ -12,4 +14,12 @@ public class ItemDebuffInverse : MonoBehaviour {
 	void Update () {
 	
 	}
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            gameObject.SetActive(false);
+            PlayerControl.inverse = true;
+        }
+    }
 }
