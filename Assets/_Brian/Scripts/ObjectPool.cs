@@ -3,14 +3,30 @@ using UnityEngine.Networking;
 
 public class ObjectPool : NetworkBehaviour
 {
-
+    //Rocks
     public GameObject normalRock;
     public GameObject bouncingRock;
+
+    //Items
+    public GameObject BuffInvincible;
+
+    public GameObject DebuffFreeze;
+    public GameObject DebuffInverse;
+    public GameObject DebuffSize;
+    public GameObject DebuffSlow;
+
 
     void Start()
     {
         ClientScene.RegisterPrefab(normalRock);
         ClientScene.RegisterPrefab(bouncingRock);
+
+        ClientScene.RegisterPrefab(BuffInvincible);
+
+        ClientScene.RegisterPrefab(DebuffFreeze);
+        ClientScene.RegisterPrefab(DebuffInverse);
+        ClientScene.RegisterPrefab(DebuffSize);
+        ClientScene.RegisterPrefab(DebuffSlow);
     }
 
     public static ObjectPool instance;
