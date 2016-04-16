@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour {
     public GameObject gameOverMenu;
 
     public Text timeText;
+    public Text gameOverTimeText;
     public Text pickupText;
 
     public AudioClip gameOverClip;
@@ -93,8 +94,26 @@ public class GameManager : MonoBehaviour {
         if (!isRunning) return;
         StopGame();
         gameOverMenu.SetActive(true);
+        
         player.clip = gameOverClip;
         player.Play();
+
+
+        System.TimeSpan t = System.TimeSpan.FromSeconds(timer);
+
+        if (timer > 3600)
+        {
+            gameOverTimeText.text = string.Format("{0:D2}h:{1:D2}:{2:D2}",
+                        t.Hours,
+                        t.Minutes,
+                        t.Seconds);
+        }
+        else
+        {
+            gameOverTimeText.text = string.Format("{0:D2}:{1:D2}",
+                        t.Minutes,
+                        t.Seconds);
+        }
     }
 
     //clear all enemy
