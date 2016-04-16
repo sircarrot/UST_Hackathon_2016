@@ -16,7 +16,7 @@ public class InfiniteLevel : GameLevel
     {
         while (true)
         {
-            GameObject normalRock = Instantiate(ObjectPool.instance.normalRock);
+            GameObject normalRock = (GameObject) Instantiate(ObjectPool.instance.normalRock, new Vector3(0,-5,0), Quaternion.identity);
             
             NetworkServer.Spawn(normalRock);
             yield return new WaitForSeconds(1f);

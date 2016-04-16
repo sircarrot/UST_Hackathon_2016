@@ -7,7 +7,9 @@ public class EnemyObject : MonoBehaviour {
     {
         if (other.CompareTag("Player"))
         {
-            // die
+            PlayerController controller = other.GetComponent<PlayerController>();
+            GameManager.instance.GameOver();
+            Destroy(gameObject);
         }
     }
 }

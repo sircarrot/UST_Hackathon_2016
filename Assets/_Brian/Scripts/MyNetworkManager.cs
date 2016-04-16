@@ -5,8 +5,12 @@ using System.Collections.Generic;
 public class MyNetworkManager : NetworkManager {
 
     public static MyNetworkManager instance;
+    
+    public GameObject multiplayerCanvas;
+    public GameObject startGameCanvas;
 
-    public GameObject gameManagerPrefab;
+    bool isMultiplayer;
+    public bool debugForMultiplayer;
 
     List<GameObject> players;
 
@@ -14,9 +18,21 @@ public class MyNetworkManager : NetworkManager {
     public bool isHost;
     public bool isMatchStarted = false;
 
+    void Start()
+    {
+        if (isMultiplayer = (debugForMultiplayer || Pass.isMultiplayer))
+        {
+            multiplayerCanvas.SetActive(true);
+        }
+        else
+        {
+            multiplayerCanvas.SetActive(false);
+            CreateGame();
+        }
+    }
+
     public void StartNewGame()
     {
-        GameObject gameManagerObject = Instantiate(gameManagerPrefab);
         GameManager.instance.StartGame();
         isMatchStarted = true;
     }
@@ -37,9 +53,13 @@ public class MyNetworkManager : NetworkManager {
     {
         players.Add(player);
         print("player connected");
-        if (!Pass.isMultiplayer)
+        if (!isMultiplayer)
         {
             StartNewGame();
+        }
+        else
+        {
+            startGameCanvas.SetActive(true);
         }
     }
 
@@ -54,11 +74,14 @@ public class MyNetworkManager : NetworkManager {
         isHost = true;
         StartHost();
         players = new List<GameObject>();
+        multiplayerCanvas.SetActive(false);
     }
+
     public void JoinGame()
     {
         isHost = false;
         StartClient();
+        multiplayerCanvas.SetActive(false);
     }
     public void StopMultiplayer()
     {
@@ -69,5 +92,11 @@ public class MyNetworkManager : NetworkManager {
         isHost = false;
         players = null;
         isMatchStarted = false;
+    }
+
+    public override void OnStopClient()
+    {
+        base.OnStopClient();
+        multiplayerCanvas.SetActive(true);
     }
 }
