@@ -1,7 +1,18 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 
-public class ObjectPool : MonoBehaviour
+public class ObjectPool : NetworkBehaviour
 {
+
+    public GameObject normalRock;
+    public GameObject bouncingRock;
+
+    void Start()
+    {
+        ClientScene.RegisterPrefab(normalRock);
+        ClientScene.RegisterPrefab(bouncingRock);
+    }
+
     public static ObjectPool instance;
     void Awake()
     {
@@ -20,6 +31,4 @@ public class ObjectPool : MonoBehaviour
         instance = null;
     }
 
-    public GameObject normalRock;
-    public GameObject bouncingRock;
 }

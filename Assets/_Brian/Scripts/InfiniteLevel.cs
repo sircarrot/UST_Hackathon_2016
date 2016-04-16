@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Networking;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,9 @@ public class InfiniteLevel : GameLevel
     {
         while (true)
         {
-            Instantiate(ObjectPool.instance.normalRock);
+            GameObject normalRock = Instantiate(ObjectPool.instance.normalRock);
+            
+            NetworkServer.Spawn(normalRock);
             yield return new WaitForSeconds(1f);
         }
     }
