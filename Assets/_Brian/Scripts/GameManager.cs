@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour {
     public GameObject gameOverMenu;
 
     public Text timeText;
+    public Text pickupText;
 
     public AudioClip gameOverClip;
 
@@ -97,13 +98,28 @@ public class GameManager : MonoBehaviour {
     }
 
     //clear all enemy
-    public void ClearScreen()
+    public void ClearScreen(bool clearBoss = false)
     {
         EnemyObject[] allObjects = FindObjectsOfType<EnemyObject>();
-        foreach(EnemyObject obj in allObjects)
+        if (clearBoss)
         {
-            Destroy(obj.gameObject);
+            foreach (EnemyObject obj in allObjects)
+            {
+                Destroy(obj.gameObject);
+            }
         }
+        else
+        {
+            foreach (EnemyObject obj in allObjects)
+            {
+                if (!obj.isBoss)
+                {
+                    Destroy(obj.gameObject);
+                }
+            }
+
+        }
+        
     }
 
     public void StopGame()
@@ -128,6 +144,11 @@ public class GameManager : MonoBehaviour {
         RemoveLevel();
     }
 
+    public void DisplayPickupItem(string itemname)
+    {
+        pickupText.text = itemname;
+    }
+
     public void Freeze(float duration)
     {
         if (freezeTimer < duration) freezeTimer = duration;
@@ -146,6 +167,10 @@ public class GameManager : MonoBehaviour {
         else if (slowTimer > 0)
         {
             enemySpeedScale = 0.5f;
+        }
+        else
+        {
+            enemySpeedScale = 1.0f;
         }
         freezeTimer -= Time.deltaTime;
         slowTimer -= Time.deltaTime;

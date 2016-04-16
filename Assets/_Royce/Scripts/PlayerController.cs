@@ -36,10 +36,14 @@ public class PlayerController : NetworkBehaviour {
     private float debufftime;
     private float bufftime;
 
+    private AudioSource audioPlayer;
+    public AudioClip pickupSound;
+
     //private Rigidbody2D PlayerCharacter;
 
     void Start()
     {
+        audioPlayer = GetComponent<AudioSource>();
         //PlayerCharacter = GetComponent<Rigidbody2D>();
         invincible = false;
         inverse = false;
@@ -70,7 +74,14 @@ public class PlayerController : NetworkBehaviour {
         debufftime = 5;
         bufftime = 5;
     //
-}
+    }
+
+    public void ItemPickedUp(Item item)
+    {
+        audioPlayer.clip = pickupSound;
+        audioPlayer.Play();
+        GameManager.instance.DisplayPickupItem(item.itemName);
+    }
 
     void FixedUpdate()
     {

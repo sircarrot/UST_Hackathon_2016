@@ -4,6 +4,8 @@ using System.Collections;
 
 public class EnemyObject : NetworkBehaviour {
 
+    public bool isBoss = false;
+
     void Update()
     {
         //this.transform.rotation = direction;

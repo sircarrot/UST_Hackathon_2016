@@ -13,14 +13,19 @@ public class ItemRandom : MonoBehaviour {
             int rng = Random.Range(0, 5);
             switch (rng) {
                 case 0:
+                    gameObject.AddComponent<ItemDebuffFreeze>();
                     break;
                 case 1:
+                    gameObject.AddComponent<ItemDebuffInverse>();
                     break;
                 case 2:
+                    gameObject.AddComponent<ItemDebuffQuake>();
                     break;
                 case 3:
+                    gameObject.AddComponent<ItemDebuffSize>();
                     break;
                 case 4:
+                    gameObject.AddComponent<ItemDebuffSlow>();
                     break;
             }
         }
@@ -31,10 +36,13 @@ public class ItemRandom : MonoBehaviour {
             switch (rng)
             {
                 case 0:
+                    gameObject.AddComponent<ItemFreeze>();
                     break;
                 case 1:
+                    gameObject.AddComponent<ItemShield>();
                     break;
                 case 2:
+                    gameObject.AddComponent<ItemSlow>();
                     break;
             }
         }
@@ -45,8 +53,10 @@ public class ItemRandom : MonoBehaviour {
             switch (rng)
             {
                 case 0:
+                    gameObject.AddComponent<ItemClear>();
                     break;
                 case 1:
+                    gameObject.AddComponent<ItemInvicible>();
                     break;
             }
         }
@@ -57,15 +67,4 @@ public class ItemRandom : MonoBehaviour {
 	
 	}
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            PlayerController PlayerControl = other.GetComponent<PlayerController>();
-            PlayerControl.DebuffFreezeTime = Time.time;
-            PlayerControl.dbfreeze = true;
-            PlayerControl.DebuffFreeze();
-            Destroy(gameObject);
-        }
-    }
 }
