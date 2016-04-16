@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,9 +13,10 @@ public class InfiniteLevel : GameLevel
 
     public override IEnumerator StartGameLevelContent()
     {
-        print("it works");
-
-
-        yield return null;
+        while (true)
+        {
+            Instantiate(ObjectPool.instance.normalRock);
+            yield return new WaitForSeconds(1f);
+        }
     }
 }

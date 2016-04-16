@@ -12,4 +12,13 @@ public class ItemClear : MonoBehaviour {
 	void Update () {
 	
 	}
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            gameObject.SetActive(false);
+            //Clear
+        }
+    }
 }
