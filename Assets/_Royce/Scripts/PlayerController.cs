@@ -95,13 +95,15 @@ public class PlayerController : NetworkBehaviour {
         transform.position += movement * Time.deltaTime * speed;
 
         //Up and down no rotation
+        //transform.rotation = Quaternion.Euler(0,0,Mathf.Atan(moveHorizontal/moveVertical));
+
         if (Input.GetKey(KeyCode.LeftArrow))
             transform.Rotate(Vector3.forward * 90 * Time.deltaTime);
         else if (Input.GetKey(KeyCode.RightArrow))
             transform.Rotate(Vector3.forward * -90 * Time.deltaTime);
 
 
-        
+
     }
 
     public void DebuffSlow()

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Collections;
 
@@ -16,7 +17,10 @@ public class GameManager : MonoBehaviour {
 
     public Text timeText;
 
+    public AudioClip gameOverClip;
+
     private GameLevel level;
+    AudioSource player;
 
     public float timer;
     bool isRunning;
@@ -43,6 +47,7 @@ public class GameManager : MonoBehaviour {
             Debug.LogError("game manager instance already exist");
             Destroy(gameObject);
         }
+        player = GetComponent<AudioSource>();
     }
     void Update()
     {
@@ -65,6 +70,11 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    public void LeaveGame()
+    {
+        SceneManager.LoadScene(MenuNavigation.MENU);
+    }
+
     public void StartGame()
     {
         StopGame();
@@ -79,8 +89,11 @@ public class GameManager : MonoBehaviour {
 
     public void GameOver()
     {
+        if (!isRunning) return;
         StopGame();
         gameOverMenu.SetActive(true);
+        player.clip = gameOverClip;
+        player.Play();
     }
 
     //clear all enemy
