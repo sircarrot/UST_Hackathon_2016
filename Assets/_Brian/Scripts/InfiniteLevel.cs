@@ -71,7 +71,7 @@ public class InfiniteLevel : GameLevel
 
 
             //20% chance of bouncing rock
-            int rockspawn = Random.Range(0, 5);
+            int rockspawn = Random.Range(0, 3);
             GameObject normalRock;
             switch (rockspawn)
             {
