@@ -17,7 +17,7 @@ public class ItemFreeze : MonoBehaviour {
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            //Freeze enemy
+            GameManager.instance.Freeze(5);
             Destroy(gameObject);
         }
     }

@@ -5,9 +5,9 @@ public class ItemRandom : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        int luck = Random.Range(0,100);
+        int luck = Random.Range(0,10);
         
-        if (luck < 30)
+        if (luck < 3)
         {
             //Debuff
             int rng = Random.Range(0, 5);
@@ -24,7 +24,7 @@ public class ItemRandom : MonoBehaviour {
                     break;
             }
         }
-        else if (luck < 70)
+        else if (luck < 7)
         {
             //Normal
             int rng = Random.Range(0, 3);
