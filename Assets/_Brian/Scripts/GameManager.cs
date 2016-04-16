@@ -4,6 +4,7 @@ using System.Collections;
 public class GameManager : MonoBehaviour {
 
     public static GameManager instance;
+    public static float enemySpeedScale = 1f;
 
     private GameLevel level;
 
