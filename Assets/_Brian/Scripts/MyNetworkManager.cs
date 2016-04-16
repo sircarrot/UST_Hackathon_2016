@@ -10,7 +10,7 @@ public class MyNetworkManager : NetworkManager {
     public GameObject startGameCanvas;
     public GameObject gamePlane;
 
-    bool isMultiplayer;
+    public bool isMultiplayer;
     public bool debugForMultiplayer;
 
     List<GameObject> players;

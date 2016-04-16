@@ -7,6 +7,10 @@ public class UFOBoss : MonoBehaviour {
     public float speed = 5f;
     bool goingUp = true;
 
+    public GameObject weakPoint;
+    public GameObject ufo;
+    public GameObject explosion;
+
     // Use this for initialization
     void Start () {
         routine = StartCoroutine(movement());
@@ -36,7 +40,6 @@ public class UFOBoss : MonoBehaviour {
             while (targetRight.x - transform.position.x > 0.5)
             {
                 transform.position = Vector3.Lerp(transform.position, targetRight, GameManager.enemySpeedScale * Time.deltaTime * speed / 10);
-                Debug.Log(goingUp);
                 transform.position += new Vector3(speed, verticalMovement()) * GameManager.enemySpeedScale * Time.deltaTime / 3;
                 yield return new WaitForFixedUpdate();
             }
@@ -60,5 +63,9 @@ public class UFOBoss : MonoBehaviour {
     public void getHit()
     {
         StopCoroutine(routine);
+        weakPoint.SetActive(false);
+        ufo.SetActive(false);
+        explosion.SetActive(true);
+        Destroy(gameObject, 0.9f);
     }
 }

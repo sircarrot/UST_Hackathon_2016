@@ -83,7 +83,7 @@ public class GameManager : NetworkBehaviour {
     public void StartGame()
     {
         StopGame();
-        ClearScreen();
+        ClearScreen(true);
         level = gameObject.AddComponent<InfiniteLevel>();
         level.holder = this;
         level.StartGameLevel();
@@ -101,6 +101,7 @@ public class GameManager : NetworkBehaviour {
         player.clip = gameOverClip;
         player.Play();
 
+        saveBestGame();
 
         System.TimeSpan t = System.TimeSpan.FromSeconds(timer);
 
@@ -124,26 +125,23 @@ public class GameManager : NetworkBehaviour {
     //clear all enemy
     public void ClearScreen(bool clearBoss = false)
     {
-        EnemyObject[] allObjects = FindObjectsOfType<EnemyObject>();
         if (clearBoss)
         {
-            foreach (EnemyObject obj in allObjects)
+            UFOBoss[] allBoss = FindObjectsOfType<UFOBoss>();
+            foreach (UFOBoss obj in allBoss)
             {
                 Destroy(obj.gameObject);
             }
         }
-        else
-        {
-            foreach (EnemyObject obj in allObjects)
-            {
-                if (!obj.isBoss)
-                {
-                    Destroy(obj.gameObject);
-                }
-            }
-
-        }
         
+        EnemyObject[] allObjects = FindObjectsOfType<EnemyObject>();
+        foreach (EnemyObject obj in allObjects)
+        {
+            if (!obj.isBoss)
+            {
+                Destroy(obj.gameObject);
+            }
+        }
     }
 
     public void StopGame()
@@ -199,4 +197,17 @@ public class GameManager : NetworkBehaviour {
         freezeTimer -= Time.deltaTime;
         slowTimer -= Time.deltaTime;
     }
+
+    public void saveBestGame()
+    {
+        float best = timer;
+        if (MyNetworkManager.instance.isMultiplayer)
+        {
+            BestScore.saveScore("multi",best);
+        }else
+        {
+            BestScore.saveScore("single", best);
+        }
+    }
+
 }

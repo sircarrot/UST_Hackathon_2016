@@ -17,7 +17,11 @@ public class EnemyObject : NetworkBehaviour {
         {
             PlayerController controller = other.GetComponent<PlayerController>();
             controller.GetHit();
-            Destroy(gameObject);
+            if (!isBoss)
+            {
+                Destroy(gameObject);
+            }
+            
         }
     }
 }

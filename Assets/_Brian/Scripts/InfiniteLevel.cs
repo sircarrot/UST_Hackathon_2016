@@ -96,7 +96,7 @@ public class InfiniteLevel : GameLevel
             }
 
             //Boss
-            if (count % 20 == 19)
+            if (count % 20 == 0)
             {
                 GameObject boss = (GameObject)Instantiate(ObjectPool.instance.UFOBoss, new Vector3(-11, 1, 0), Quaternion.identity);
                 NetworkServer.Spawn(boss);
