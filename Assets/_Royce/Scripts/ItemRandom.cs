@@ -29,7 +29,7 @@ public class ItemRandom : MonoBehaviour {
                 //    break;
             }
         }
-        else if (luck < 7)
+        else if (luck < 8)
         {
             //Normal
             int rng = Random.Range(0, 3);
@@ -49,13 +49,13 @@ public class ItemRandom : MonoBehaviour {
         else
         {
             //OP items
-            int rng = Random.Range(0, 2);
+            int rng = Random.Range(0, 4);
             switch (rng)
             {
                 case 0:
                     gameObject.AddComponent<ItemClear>();
                     break;
-                case 1:
+                default:
                     gameObject.AddComponent<ItemInvicible>();
                     break;
             }

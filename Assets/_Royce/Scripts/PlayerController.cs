@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class PlayerController : NetworkBehaviour {
 
     public float speed; 
-    public float size; 
+    public float size;
 
     public float normspeed; // Normal value
     public float normsize; // Normal value
@@ -53,13 +53,13 @@ public class PlayerController : NetworkBehaviour {
         dbspeed = false;
 
         speed = 10;
-        size = 5;
+        size = 0.2f;
 
         normspeed = 5;
-        normsize = 5;
+        normsize = 0.2f;
 
         dbspeedval = 2;
-        dbsizeval = 3;
+        dbsizeval = 0.4f;
 
 
         dbfrzval = speed;
@@ -97,13 +97,19 @@ public class PlayerController : NetworkBehaviour {
         if (dbsize) DebuffSize();
         if (dbfreeze) DebuffFreeze();
 
-        if (inverse) movement = DebuffInverse(movement);
-
+        if (inverse)
+        {
+            DebuffInverse();
+            transform.position -= movement * Time.deltaTime * speed;
+        }
+        else
+        {
+            transform.position += movement * Time.deltaTime * speed;
+        }
         //Buffs
         if (invincible) BuffInvincible();
 
 
-        transform.position += movement * Time.deltaTime * speed;
 
         //Up and down no rotation
         //transform.rotation = Quaternion.Euler(0,0,Mathf.Atan(moveHorizontal/moveVertical));
@@ -130,11 +136,13 @@ public class PlayerController : NetworkBehaviour {
     public void DebuffSize()
     {
         size = dbsizeval;
+        transform.localScale = new Vector3(size, size, 1);
         float diff = Time.time - DebuffSizeTime;
-        if (diff >= debufftime)
+        if (diff >= debufftime/2)
         {
             dbsize = false;
             size = normsize;
+            transform.localScale = new Vector3(size, size, 1);
         }
     }
     public void DebuffFreeze()
@@ -147,15 +155,13 @@ public class PlayerController : NetworkBehaviour {
             speed += dbfrzval;
         }
     }
-    public Vector3 DebuffInverse(Vector3 movement)
+    public void DebuffInverse()
     {
-        float diff = Time.time - DebuffFreezeTime;
+        float diff = Time.time - DebuffInverseTime;
         if (diff >= debufftime)
         {
             inverse = false;
-            return movement;
         }
-        return (new Vector3 (-movement.x, -movement.y, movement.z));
     }
     public void BuffInvincible()
     {
