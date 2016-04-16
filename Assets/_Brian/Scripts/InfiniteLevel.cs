@@ -12,6 +12,8 @@ public class InfiniteLevel : GameLevel
     {
     }
 
+    int count = 0;
+
     public override IEnumerator StartGameLevelContent()
     {
         while (true)
@@ -68,11 +70,32 @@ public class InfiniteLevel : GameLevel
 
 
 
+            //20% chance of bouncing rock
+            int rockspawn = Random.Range(0, 5);
+            GameObject normalRock;
+            switch (rockspawn)
+            {
+                case 0:
+                    normalRock = (GameObject)Instantiate(ObjectPool.instance.bouncingRock, new Vector3(x, y, 0), rot);
+                    NetworkServer.Spawn(normalRock);
+                    break;
+                default:
+                    normalRock = (GameObject)Instantiate(ObjectPool.instance.normalRock, new Vector3(x, y, 0), rot);
+                    NetworkServer.Spawn(normalRock);
+                    break;
+            }
 
-                                                                                                //position
-            GameObject normalRock = (GameObject) Instantiate(ObjectPool.instance.normalRock, new Vector3(x, y, 0), rot);
-            
-            NetworkServer.Spawn(normalRock);
+            //RandomItem
+            if (count % 3 == 0)
+            {
+                x = Random.Range(-8, 8);
+                y = Random.Range(-5, 5);
+                GameObject rnditem;
+                rnditem = (GameObject)Instantiate(ObjectPool.instance.RandomItem, new Vector3(x, y, 0), Quaternion.identity);
+                NetworkServer.Spawn(normalRock);
+            }
+            count++;
+
             yield return new WaitForSeconds(1f);
         }
     }
