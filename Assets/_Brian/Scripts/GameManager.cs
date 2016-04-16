@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class GameManager : MonoBehaviour {
@@ -13,31 +14,24 @@ public class GameManager : MonoBehaviour {
     public GameObject gamePauseMenu;
     public GameObject gameOverMenu;
 
+    public Text timeText;
+
     private GameLevel level;
 
-    public float Timer;
+    public float timer;
+    bool isRunning;
 
-    public void Freeze(float duration)
+    
+    public void PauseGame()
     {
-        if(freezeTimer < duration)freezeTimer = duration;
+        Time.timeScale = 0f;
+        gamePauseMenu.SetActive(true);
     }
-    public void Slow(float duration)
+    public void Resume()
     {
-        if (slowTimer < duration) slowTimer = duration;
+        Time.timeScale = 1f;
+        gamePauseMenu.SetActive(false);
     }
-    void FixedUpdate()
-    {
-        if(freezeTimer > 0)
-        {
-            enemySpeedScale = 0f;
-        }else if(slowTimer > 0)
-        {
-            enemySpeedScale = 0.5f;
-        }
-        freezeTimer -= Time.deltaTime;
-        slowTimer -= Time.deltaTime;
-    }
-
     void Awake()
     {
         if (!instance)
@@ -52,7 +46,23 @@ public class GameManager : MonoBehaviour {
     }
     void Update()
     {
+        if (!isRunning)
+            return;
+        System.TimeSpan t = System.TimeSpan.FromSeconds(timer);
 
+        if (timer > 3600)
+        {
+            timeText.text = string.Format("{0:D2}h:{1:D2}:{2:D2}",
+                        t.Hours,
+                        t.Minutes,
+                        t.Seconds);
+        }
+        else
+        {
+            timeText.text = string.Format("{0:D2}:{1:D2}",
+                        t.Minutes,
+                        t.Seconds);
+        }
     }
 
     public void StartGame()
@@ -62,8 +72,9 @@ public class GameManager : MonoBehaviour {
         level = gameObject.AddComponent<InfiniteLevel>();
         level.holder = this;
         level.StartGameLevel();
-
+        timer = 0;
         gameOverMenu.SetActive(false);
+        isRunning = true;
     }
 
     public void GameOver()
@@ -84,6 +95,7 @@ public class GameManager : MonoBehaviour {
 
     public void StopGame()
     {
+        isRunning = false;
         RemoveLevel();
     }
 
@@ -101,5 +113,28 @@ public class GameManager : MonoBehaviour {
     {
         instance = null;
         RemoveLevel();
+    }
+
+    public void Freeze(float duration)
+    {
+        if (freezeTimer < duration) freezeTimer = duration;
+    }
+    public void Slow(float duration)
+    {
+        if (slowTimer < duration) slowTimer = duration;
+    }
+    void FixedUpdate()
+    {
+        timer += Time.deltaTime;
+        if (freezeTimer > 0)
+        {
+            enemySpeedScale = 0f;
+        }
+        else if (slowTimer > 0)
+        {
+            enemySpeedScale = 0.5f;
+        }
+        freezeTimer -= Time.deltaTime;
+        slowTimer -= Time.deltaTime;
     }
 }
