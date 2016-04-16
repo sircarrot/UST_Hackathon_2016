@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Item : MonoBehaviour {
+public class ItemDebuffFreeze : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {

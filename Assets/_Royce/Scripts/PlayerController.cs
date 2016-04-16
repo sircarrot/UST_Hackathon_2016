@@ -20,5 +20,11 @@ public class PlayerController : MonoBehaviour {
         Vector3 movement = new Vector3(moveHorizontal, moveVertical,0);
         transform.position += movement * Time.deltaTime * speed;
 
+        //Up and down no rotation
+        if (Input.GetKey(KeyCode.LeftArrow))
+            transform.Rotate(Vector3.forward * 90 * Time.deltaTime);
+        else if (Input.GetKey(KeyCode.RightArrow))
+            transform.Rotate(Vector3.forward * -90 * Time.deltaTime);
+        
     }
 }
