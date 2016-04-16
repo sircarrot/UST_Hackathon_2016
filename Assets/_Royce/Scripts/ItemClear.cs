@@ -5,8 +5,8 @@ public class ItemClear : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
-	}
+        gameObject.GetComponent<Item>().itemName = "Clear Screen";
+    }
 	
 	// Update is called once per frame
 	void Update () {
