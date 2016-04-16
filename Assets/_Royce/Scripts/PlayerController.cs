@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour {
     // Buff/Debuff Times
     public float DebuffSlowTime;
     public float DebuffSizeTime;
-    public float DebuffInverse;
+    public float DebuffInverseTime;
     public float DebuffFreezeTime;
     public float BuffInvincibleTime;
     public float BuffFreezeTime;
@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour {
         dbfrzval = speed;
         DebuffSlowTime = 0;
         DebuffSizeTime = 0;
-        DebuffInverse = 0;
+        DebuffInverseTime = 0;
         DebuffFreezeTime = 0;
         BuffInvincibleTime = 0;
         BuffFreezeTime = 0;
@@ -61,7 +61,20 @@ public class PlayerController : MonoBehaviour {
     {
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
-        Vector3 movement = new Vector3(moveHorizontal, moveVertical,0);
+        Vector3 movement = new Vector3(moveHorizontal, moveVertical, 0);
+
+        //Items
+        //Debuffs
+        if (dbspeed) DebuffSlow();
+        if (dbsize) DebuffSize();
+        if (dbfreeze) DebuffFreeze();
+
+        if (inverse) DebuffInverse(movement);
+
+        //Buffs
+        if (invincible) BuffInvincible();
+
+
         transform.position += movement * Time.deltaTime * speed;
 
         //Up and down no rotation
@@ -70,14 +83,6 @@ public class PlayerController : MonoBehaviour {
         else if (Input.GetKey(KeyCode.RightArrow))
             transform.Rotate(Vector3.forward * -90 * Time.deltaTime);
 
-        //Items
-        //Debuffs
-        if (dbspeed) DebuffSlow();
-        if (dbsize) DebuffSize();
-        if (dbfreeze) DebuffFreeze();
-        
-        //Buffs
-        if (invincible) BuffInvincible();
 
         
     }
@@ -111,6 +116,16 @@ public class PlayerController : MonoBehaviour {
             dbfreeze = false;
             speed += dbfrzval;
         }
+    }
+    public Vector3 DebuffInverse(Vector3 movement)
+    {
+        float diff = Time.time - DebuffFreezeTime;
+        if (diff >= debufftime)
+        {
+            inverse = false;
+            return movement;
+        }
+        return (new Vector3 (-movement.x, -movement.y, movement.z));
     }
     public void BuffInvincible()
     {
