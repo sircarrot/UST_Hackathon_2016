@@ -4,13 +4,26 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
 
-    public float speed;
+    public float speed; // Debuff slow, -3
+    public float size; // Debuff size, -5
+    public bool invincible; // Invincible
+    public bool inverse; //Debuff Inverse
+    public bool dbfreeze; //Debuff Freeze
+    public bool shield; // Shield
 
     private Rigidbody2D PlayerCharacter;
 
     void Start()
     {
         PlayerCharacter = GetComponent<Rigidbody2D>();
+        invincible = false;
+        inverse = false;
+        dbfreeze = false;
+        shield = false;
+
+        speed = 5;
+        size = 10;
+        //
     }
 
     void FixedUpdate()
