@@ -36,6 +36,8 @@ public class PlayerController : NetworkBehaviour {
     private float debufftime;
     private float bufftime;
 
+    public Vector3 lookdir;
+
     private AudioSource audioPlayer;
     public AudioClip pickupSound;
 
@@ -74,7 +76,9 @@ public class PlayerController : NetworkBehaviour {
 
         debufftime = 5;
         bufftime = 5;
-    //
+
+        lookdir = new Vector3 (0, 0, 0);
+        //
     }
 
     public override void OnStartLocalPlayer()
@@ -117,18 +121,11 @@ public class PlayerController : NetworkBehaviour {
         //Buffs
         if (invincible) BuffInvincible();
 
-
-
-        //Up and down no rotation
-        //transform.rotation = Quaternion.Euler(0,0,Mathf.Atan(moveHorizontal/moveVertical));
-
-        if (Input.GetKey(KeyCode.LeftArrow))
-            transform.Rotate(Vector3.forward * 90 * Time.deltaTime);
-        else if (Input.GetKey(KeyCode.RightArrow))
-            transform.Rotate(Vector3.forward * -90 * Time.deltaTime);
-
-
-
+        if (movement.magnitude>0.1) { lookdir = movement; }
+        var newRotation = Quaternion.LookRotation(-lookdir, Vector3.forward);
+        newRotation.x = 0.0f;
+        newRotation.y = 0.0f;
+        transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * 8);
     }
 
     public void DebuffSlow()
