@@ -97,7 +97,7 @@ public class PlayerController : NetworkBehaviour {
         if (dbsize) DebuffSize();
         if (dbfreeze) DebuffFreeze();
 
-        if (inverse) DebuffInverse(movement);
+        if (inverse) movement = DebuffInverse(movement);
 
         //Buffs
         if (invincible) BuffInvincible();
@@ -169,7 +169,7 @@ public class PlayerController : NetworkBehaviour {
     {
         if (isLocalPlayer)
         {
-            if (!invincible) { CmdCauseGameOver(); }
+            if (!invincible) { if (!shield) { CmdCauseGameOver(); } else { shield = false; } }
         }
     }
     [Command]
