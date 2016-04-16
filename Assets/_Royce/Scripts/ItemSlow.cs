@@ -16,8 +16,8 @@ public class ItemSlow : MonoBehaviour {
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            gameObject.SetActive(false);
             //Slow enemy
+            Destroy(gameObject);
         }
     }
 }

@@ -17,8 +17,8 @@ public class ItemDebuffQuake : MonoBehaviour {
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            gameObject.SetActive(false);
             //Quake
+            Destroy(gameObject);
         }
     }
 }
