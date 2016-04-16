@@ -6,10 +6,18 @@ public class MyNetworkManager : NetworkManager {
 
     public static MyNetworkManager instance;
 
+    public GameObject gameManagerPrefab;
+
     List<GameObject> players;
 
     [HideInInspector]
     public bool isHost;
+
+    public void StartNewGame()
+    {
+        GameObject gameManagerObject = Instantiate(gameManagerPrefab);
+        GameManager.instance.StartGame();
+    }
 
     public void Awake()
     {
