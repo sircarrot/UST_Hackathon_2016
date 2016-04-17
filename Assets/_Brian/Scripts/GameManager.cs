@@ -223,5 +223,4 @@ public class GameManager : NetworkBehaviour {
             BestScore.saveScore("single", best);
         }
     }
-
 }

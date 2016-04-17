@@ -41,6 +41,9 @@ public class PlayerController : NetworkBehaviour {
     private AudioSource audioPlayer;
     public AudioClip pickupSound;
 
+    public GameObject shieldObject;
+    public GameObject invicibilityObject;
+
     public Sprite localPlayerSprite;
     //private Rigidbody2D PlayerCharacter;
 
@@ -182,15 +185,19 @@ public class PlayerController : NetworkBehaviour {
         if (diff >= bufftime)
         {
             invincible = false;
+            invicibilityObject.SetActive(false);
         }
     }
+
     public void GetHit()
     {
-        if (!invincible) { if (!shield) { CmdCauseGameOver(); } else { shield = false; } }
+        if (!invincible) {
+            if (!shield) { CmdCauseGameOver(); } else { shield = false; shieldObject.SetActive(false); } }
     }
     [Command]
     void CmdCauseGameOver()
     {
+        shieldObject.SetActive(false);
         GameManager.instance.GameOver();
     }
 }
