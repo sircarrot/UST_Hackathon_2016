@@ -99,6 +99,14 @@ public class PlayerController : NetworkBehaviour {
     {
         if (!isLocalPlayer)
             return;
+
+        if (GameManager.instance.timer <= 0.5)
+        {
+            transform.position = new Vector3(0, 0, 0);
+            lookdir = new Vector3(0,0,0);
+        }
+
+
         float moveHorizontal = Input.GetAxis("Horizontal") + (Input.acceleration.x * 2.5f);
         float moveVertical = Input.GetAxis("Vertical") + (Input.acceleration.y * 2.5f);
         Vector3 movement = new Vector3(moveHorizontal, moveVertical, 0);
