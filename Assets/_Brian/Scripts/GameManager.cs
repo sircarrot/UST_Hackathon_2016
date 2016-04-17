@@ -28,16 +28,19 @@ public class GameManager : NetworkBehaviour {
     public float timer;
     bool isRunning;
 
-    
+    public bool canspawn = true;
+
     public void PauseGame()
     {
         Time.timeScale = 0f;
         gamePauseMenu.SetActive(true);
+        canspawn = false;
     }
     public void Resume()
     {
         Time.timeScale = 1f;
         gamePauseMenu.SetActive(false);
+        canspawn = true;
     }
     void Awake()
     {
@@ -90,6 +93,7 @@ public class GameManager : NetworkBehaviour {
         timer = 0;
         gameOverMenu.SetActive(false);
         isRunning = true;
+        canspawn = true;
     }
 
     public void GameOver()
@@ -102,6 +106,8 @@ public class GameManager : NetworkBehaviour {
         player.Play();
 
         saveBestGame();
+        canspawn = false;
+        ((InfiniteLevel)level).count = 0;
 
         System.TimeSpan t = System.TimeSpan.FromSeconds(timer);
 
@@ -173,7 +179,9 @@ public class GameManager : NetworkBehaviour {
 
     public void Freeze(float duration)
     {
+        canspawn = false;
         if (freezeTimer < duration) freezeTimer = duration;
+        else canspawn = true;
     }
     public void Slow(float duration)
     {

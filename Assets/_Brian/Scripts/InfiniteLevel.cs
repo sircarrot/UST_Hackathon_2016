@@ -12,7 +12,7 @@ public class InfiniteLevel : GameLevel
     {
     }
 
-    int count = 0;
+    public int count = 0;
     float decrement = 1.0f;
     public override IEnumerator StartGameLevelContent()
     {
@@ -69,41 +69,42 @@ public class InfiniteLevel : GameLevel
             }
 
 
-
-            //20% chance of bouncing rock
-            int rockspawn = Random.Range(0, 3);
-            GameObject normalRock;
-            switch (rockspawn)
+            if (GameManager.instance.canspawn)
             {
-                case 0:
-                    normalRock = (GameObject)Instantiate(ObjectPool.instance.bouncingRock, new Vector3(x, y, 0), rot);
-                    NetworkServer.Spawn(normalRock);
-                    break;
-                default:
-                    normalRock = (GameObject)Instantiate(ObjectPool.instance.normalRock, new Vector3(x, y, 0), rot);
-                    NetworkServer.Spawn(normalRock);
-                    break;
-            }
+                //20% chance of bouncing rock
+                int rockspawn = Random.Range(0, 3);
+                GameObject normalRock;
+                switch (rockspawn)
+                {
+                    case 0:
+                        normalRock = (GameObject)Instantiate(ObjectPool.instance.bouncingRock, new Vector3(x, y, 0), rot);
+                        NetworkServer.Spawn(normalRock);
+                        break;
+                    default:
+                        normalRock = (GameObject)Instantiate(ObjectPool.instance.normalRock, new Vector3(x, y, 0), rot);
+                        NetworkServer.Spawn(normalRock);
+                        break;
+                }
 
-            //RandomItem
-            if (count % 4 == 0)
-            {
-                x = Random.Range(-8, 8);
-                y = Random.Range(-4, 4);
-                GameObject rnditem;
-                rnditem = (GameObject)Instantiate(ObjectPool.instance.RandomItem, new Vector3(x, y, 0), Quaternion.identity);
-                NetworkServer.Spawn(rnditem);
-            }
+                //RandomItem
+                if (count % 4 == 0)
+                {
+                    x = Random.Range(-8, 8);
+                    y = Random.Range(-4, 4);
+                    GameObject rnditem;
+                    rnditem = (GameObject)Instantiate(ObjectPool.instance.RandomItem, new Vector3(x, y, 0), Quaternion.identity);
+                    NetworkServer.Spawn(rnditem);
+                }
 
-            //Boss
-            if (count % 20 == 19)
-            {
-                GameObject boss = (GameObject)Instantiate(ObjectPool.instance.UFOBoss, new Vector3(-11, 1, 0), Quaternion.identity);
-                NetworkServer.Spawn(boss);
+                //Boss
+                if (count % 20 == 19)
+                {
+                    GameObject boss = (GameObject)Instantiate(ObjectPool.instance.UFOBoss, new Vector3(-11, 1, 0), Quaternion.identity);
+                    NetworkServer.Spawn(boss);
+                }
+                count++;
             }
-            count++;
-
-            if (Time.time >= 30 && decrement > 0.5f)
+            if (count >= 30 && decrement > 0.5f)
             { decrement -= 0.01f; }
             else yield return new WaitForSeconds(decrement);
         }
