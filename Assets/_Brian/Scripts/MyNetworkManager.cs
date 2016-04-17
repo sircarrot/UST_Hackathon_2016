@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Networking;
 using System.Collections.Generic;
 
@@ -10,6 +11,8 @@ public class MyNetworkManager : NetworkManager {
     public GameObject startGameCanvas;
     public GameObject gamePlane;
 
+    public InputField addressInput;
+
     public bool isMultiplayer;
     public bool debugForMultiplayer;
 
@@ -19,8 +22,16 @@ public class MyNetworkManager : NetworkManager {
     public bool isHost;
     public bool isMatchStarted = false;
 
+    public void saveAddress()
+    {
+        PlayerPrefs.SetString("ipaddress", networkAddress);
+    }
+
     void Start()
     {
+        networkAddress = PlayerPrefs.GetString("ipaddress", "localhost");
+        addressInput.text = networkAddress;
+
         if (isMultiplayer = (debugForMultiplayer || Pass.isMultiplayer))
         {
             multiplayerCanvas.SetActive(true);
@@ -84,6 +95,7 @@ public class MyNetworkManager : NetworkManager {
         isHost = false;
         StartClient();
         multiplayerCanvas.SetActive(false);
+        saveAddress();
     }
     public void StopMultiplayer()
     {

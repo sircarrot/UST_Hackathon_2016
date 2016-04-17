@@ -25,6 +25,7 @@ public class GameManager : NetworkBehaviour {
     private GameLevel level;
     AudioSource player;
 
+    [SyncVar]
     public float timer;
     bool isRunning;
 
@@ -114,8 +115,9 @@ public class GameManager : NetworkBehaviour {
 
         saveBestGame();
         canspawn = false;
-        ((InfiniteLevel)level).count = 0;
 
+
+        Debug.Log(timer);
         System.TimeSpan t = System.TimeSpan.FromSeconds(timer);
 
         if (timer > 3600)
@@ -133,6 +135,7 @@ public class GameManager : NetworkBehaviour {
                         t.Seconds,
                         t.Milliseconds);
         }
+                ((InfiniteLevel)level).count = 0;
     }
 
     //clear all enemy

@@ -1,43 +1,63 @@
 ﻿using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class HighScoreManager : MonoBehaviour {
 
-    public Text singlePlayerScore1;
-    public Text singlePlayerScore2;
-	public Text singlePlayerScore3;
-	public Text singlePlayerScore4;
-	public Text singlePlayerScore5;
+    public Text[] singlePlayerScore;
+    public Text[] multiPlayerScore;
 
-
-	public Text multiPlayerScore1;
-	public Text multiPlayerScore2;
-	public Text multiPlayerScore3;
-	public Text multiPlayerScore4;
-	public Text multiPlayerScore5;
+    public void backtoMain()
+    {
+        SceneManager.LoadScene(MenuNavigation.MENU);
+    }
 
     // Use this for initialization
     void Start () {
         float[] multiScores = BestScore.loadScore("multi");
         float[] singleScores = BestScore.loadScore("single");
+        System.TimeSpan t;
+        
+        for(int i = 0;i < 5; i++)
+        {
+            t = System.TimeSpan.FromSeconds(singleScores[i]);
+            if (singleScores[i] > 3600)
+            {
+                singlePlayerScore[i].text = string.Format("{0:D2}h:{1:D2}:{2:D2}:{3:D2}",
+                            t.Hours,
+                            t.Minutes,
+                            t.Seconds,
+                            t.Milliseconds);
+            }
+            else
+            {
+                singlePlayerScore[i].text = string.Format("{0:D2}:{1:D2}:{2:D2}",
+                            t.Minutes,
+                            t.Seconds,
+                            t.Milliseconds);
+            }
 
-        System.TimeSpan t = System.TimeSpan.FromSeconds(singleScores[0]);
-        if (singleScores[0] > 3600)
-        {
-            singlePlayerScore1.text = string.Format("{0:D2}h:{1:D2}:{2:D2}:{3:D2}",
-                        t.Hours,
-                        t.Minutes,
-                        t.Seconds,
-                        t.Milliseconds);
+            t = System.TimeSpan.FromSeconds(multiScores[i]);
+            if (multiScores[i] > 3600)
+            {
+                multiPlayerScore[i].text = string.Format("{0:D2}h:{1:D2}:{2:D2}:{3:D2}",
+                            t.Hours,
+                            t.Minutes,
+                            t.Seconds,
+                            t.Milliseconds);
+            }
+            else
+            {
+                multiPlayerScore[i].text = string.Format("{0:D2}:{1:D2}:{2:D2}",
+                            t.Minutes,
+                            t.Seconds,
+                            t.Milliseconds);
+            }
         }
-        else
-        {
-            singlePlayerScore1.text = string.Format("{0:D2}:{1:D2}:{2:D2}",
-                        t.Minutes,
-                        t.Seconds,
-                        t.Milliseconds);
-        }
+
+        
+
     }
 	
 	// Update is called once per frame
