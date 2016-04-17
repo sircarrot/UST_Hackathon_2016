@@ -20,6 +20,7 @@ public class ItemInvicible : MonoBehaviour {
             PlayerController PlayerControl = other.GetComponent<PlayerController>();
             PlayerControl.BuffInvincibleTime = Time.time;
             PlayerControl.invincible = true;
+            PlayerControl.invicibilityObject.SetActive(true);
             Destroy(gameObject);
         }
     }

@@ -21,6 +21,7 @@ public class ItemShield: MonoBehaviour {
         {
             PlayerController PlayerControl = other.GetComponent<PlayerController>();
             PlayerControl.shield = true;
+            PlayerControl.shieldObject.SetActive(true);
             //Shield Function
             Destroy(gameObject);
         }
