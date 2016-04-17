@@ -133,10 +133,14 @@ public class PlayerController : NetworkBehaviour {
         if (invincible) BuffInvincible();
 
         if (movement.magnitude>0.1) { lookdir = movement; }
-        var newRotation = Quaternion.LookRotation(-lookdir, Vector3.forward);
-        newRotation.x = 0.0f;
-        newRotation.y = 0.0f;
-        transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * 8);
+        if(lookdir != Vector3.zero)
+        {
+            var newRotation = Quaternion.LookRotation(-lookdir, Vector3.forward);
+            newRotation.x = 0.0f;
+            newRotation.y = 0.0f;
+            transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * 8);
+        }
+        
     }
 
     public void DebuffSlow()

@@ -6,6 +6,7 @@ public class MenuNavigation : MonoBehaviour {
 
     public static string MENU = "MainMenu";
     public static string GAME_SCENE = "GameScene";
+    public static string HIGHEST_SCORE = "HighestScore";
 
     public GameObject singleplayer;
     public GameObject multiplayer;
@@ -30,5 +31,10 @@ public class MenuNavigation : MonoBehaviour {
     {
         Pass.isMultiplayer = true;
         SceneManager.LoadScene(GAME_SCENE);
+    }
+
+    public void GotoLeaderBoard()
+    {
+        SceneManager.LoadScene(HIGHEST_SCORE);
     }
 }
