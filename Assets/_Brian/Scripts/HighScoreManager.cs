@@ -6,6 +6,16 @@ public class HighScoreManager : MonoBehaviour {
 
     public Text singlePlayerScore1;
     public Text singlePlayerScore2;
+	public Text singlePlayerScore3;
+	public Text singlePlayerScore4;
+	public Text singlePlayerScore5;
+
+
+	public Text multiPlayerScore1;
+	public Text multiPlayerScore2;
+	public Text multiPlayerScore3;
+	public Text multiPlayerScore4;
+	public Text multiPlayerScore5;
 
     // Use this for initialization
     void Start () {
