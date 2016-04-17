@@ -106,7 +106,7 @@ public class InfiniteLevel : GameLevel
             }
             if (count >= 30 && decrement > 0.5f)
             { decrement -= 0.01f; }
-            else yield return new WaitForSeconds(decrement);
+            yield return new WaitForSeconds(decrement);
         }
     }
 }

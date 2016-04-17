@@ -199,6 +199,7 @@ public class GameManager : NetworkBehaviour {
         if (freezeTimer > 0)
         {
             enemySpeedScale = 0f;
+            canspawn = false;
         }
         else if (slowTimer > 0)
         {
@@ -207,6 +208,7 @@ public class GameManager : NetworkBehaviour {
         else
         {
             enemySpeedScale = 1.0f;
+            canspawn = true;
         }
         freezeTimer -= Time.deltaTime;
         slowTimer -= Time.deltaTime;
