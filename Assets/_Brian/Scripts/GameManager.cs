@@ -94,6 +94,13 @@ public class GameManager : NetworkBehaviour {
         gameOverMenu.SetActive(false);
         isRunning = true;
         canspawn = true;
+
+        Item[] allObjects = FindObjectsOfType<Item>();
+        foreach (Item obj in allObjects)
+        {
+            Destroy(obj.gameObject);
+        }
+
     }
 
     public void GameOver()
