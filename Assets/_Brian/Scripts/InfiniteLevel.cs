@@ -89,7 +89,7 @@ public class InfiniteLevel : GameLevel
                 //RandomItem
                 if (count % 4 == 0)
                 {
-                    x = Random.Range(-8, 8);
+                    x = Random.Range(-7, 7);
                     y = Random.Range(-4, 4);
                     GameObject rnditem;
                     rnditem = (GameObject)Instantiate(ObjectPool.instance.RandomItem, new Vector3(x, y, 0), Quaternion.identity);
