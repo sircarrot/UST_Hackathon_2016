@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 using System.Collections;
 
-public class ItemClear : MonoBehaviour {
+public class ItemClear : NetworkBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -17,8 +18,14 @@ public class ItemClear : MonoBehaviour {
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            GameManager.instance.ClearScreen();
+            CmdItemTakeEffect();
             Destroy(gameObject);
         }
+    }
+
+    [Command]
+    void CmdItemTakeEffect()
+    {
+        GameManager.instance.ClearScreen();
     }
 }

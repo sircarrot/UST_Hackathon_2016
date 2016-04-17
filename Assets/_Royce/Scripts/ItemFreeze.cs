@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 using System.Collections;
 
-public class ItemFreeze : MonoBehaviour {
+public class ItemFreeze : NetworkBehaviour
+{
 
 	// Use this for initialization
 	void Start () {
@@ -17,8 +19,14 @@ public class ItemFreeze : MonoBehaviour {
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            GameManager.instance.Freeze(3);
+            
             Destroy(gameObject);
         }
+    }
+
+    [Command]
+    void CmdItemTakeEffect()
+    {
+        GameManager.instance.Freeze(3);
     }
 }

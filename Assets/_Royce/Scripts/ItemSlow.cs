@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 using System.Collections;
 
-public class ItemSlow : MonoBehaviour {
+public class ItemSlow : NetworkBehaviour
+{
 
 	// Use this for initialization
 	void Start () {
@@ -16,8 +18,14 @@ public class ItemSlow : MonoBehaviour {
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            GameManager.instance.Slow(5);
+            CmdItemTakeEffect();
             Destroy(gameObject);
         }
+    }
+
+    [Command]
+    void CmdItemTakeEffect()
+    {
+        GameManager.instance.Slow(5);
     }
 }
