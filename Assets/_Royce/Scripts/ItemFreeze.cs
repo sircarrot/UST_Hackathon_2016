@@ -19,7 +19,7 @@ public class ItemFreeze : NetworkBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            
+            CmdItemTakeEffect();
             Destroy(gameObject);
         }
     }
