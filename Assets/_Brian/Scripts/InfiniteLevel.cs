@@ -13,7 +13,7 @@ public class InfiniteLevel : GameLevel
     }
 
     int count = 0;
-
+    float decrement = 1.0f;
     public override IEnumerator StartGameLevelContent()
     {
         while (true)
@@ -103,7 +103,9 @@ public class InfiniteLevel : GameLevel
             }
             count++;
 
-            yield return new WaitForSeconds(0.7f);
+            if (Time.time >= 30 && decrement > 0.5f)
+            { decrement -= 0.01f; }
+            else yield return new WaitForSeconds(decrement);
         }
     }
 }
