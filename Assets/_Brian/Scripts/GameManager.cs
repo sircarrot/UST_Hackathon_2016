@@ -186,9 +186,8 @@ public class GameManager : NetworkBehaviour {
 
     public void Freeze(float duration)
     {
-        canspawn = false;
         if (freezeTimer < duration) freezeTimer = duration;
-        else canspawn = true;
+        else { canspawn = true;}
     }
     public void Slow(float duration)
     {
