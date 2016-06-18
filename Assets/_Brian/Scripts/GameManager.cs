@@ -135,7 +135,6 @@ public class GameManager : NetworkBehaviour {
                         t.Seconds,
                         t.Milliseconds);
         }
-                ((InfiniteLevel)level).count = 0;
     }
 
     //clear all enemy
