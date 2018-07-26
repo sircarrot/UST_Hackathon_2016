@@ -51,12 +51,7 @@ public class PlayerController : NetworkBehaviour {
     {
         audioPlayer = GetComponent<AudioSource>();
         //PlayerCharacter = GetComponent<Rigidbody2D>();
-        invincible = false;
-        inverse = false;
-        dbfreeze = false;
-        shield = false;
-        dbsize = false;
-        dbspeed = false;
+        ResetBuffDebuff();
 
         speed = 10;
         size = 0.2f;
@@ -202,7 +197,18 @@ public class PlayerController : NetworkBehaviour {
     void CmdCauseGameOver()
     {
         shieldObject.SetActive(false);
+        ResetBuffDebuff();
         GameManager.instance.GameOver();
+    }
+
+    void ResetBuffDebuff()
+    {
+        invincible = false;
+        inverse = false;
+        dbfreeze = false;
+        shield = false;
+        dbsize = false;
+        dbspeed = false;
     }
 }
     

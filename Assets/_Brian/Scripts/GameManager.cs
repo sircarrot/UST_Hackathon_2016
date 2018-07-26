@@ -162,6 +162,7 @@ public class GameManager : NetworkBehaviour {
     public void StopGame()
     {
         isRunning = false;
+        ResetGame();
         RemoveLevel();
     }
 
@@ -225,5 +226,14 @@ public class GameManager : NetworkBehaviour {
         {
             BestScore.saveScore("single", best);
         }
+    }
+
+    public void ResetGame()
+    {
+        freezeTimer = 0;
+        slowTimer = 0;
+        enemySpeedScale = 1.0f;
+        canspawn = true;
+
     }
 }
